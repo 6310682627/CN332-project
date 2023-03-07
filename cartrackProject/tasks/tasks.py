@@ -1,5 +1,6 @@
 from __future__ import absolute_import, unicode_literals
 from celery import shared_task
+import torch
 import sys
 
 sys.path.append('./arial-car-track')
@@ -31,7 +32,8 @@ class Opt:
 
 @shared_task
 def Detect(opt):
-    d = detect.Detector(opt)
-    d.run(opt)
+    with torch.no_grad():
+        d = detect.Detector(opt)
+        d.run(opt)
     return "finish!"
     
