@@ -5,6 +5,7 @@ import sys
 
 sys.path.append('./arial-car-track')
 import detect
+from .models import *
 
 class Opt:
     
@@ -35,5 +36,11 @@ def Detect(opt):
     with torch.no_grad():
         d = detect.Detector(opt)
         d.run(opt)
+    my_files = OriginalVideo.objects.filter(video__contains=f"videos_uploaded/VideoKodShort.mp4")
+    TrackingVideo.objects.create(
+        original = my_files.first(),
+        video = f"videos_tracking/object_tracking/VideoKodShort.mp4",
+    )
+    
     return "finish!"
     
