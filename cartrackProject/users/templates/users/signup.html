@@ -1,0 +1,36 @@
+{% extends 'users/layout1.html' %} 
+{% load static %}
+{% block body %}
+	<div class="wrapper">
+		<div class="image-holder">
+            <img src={% static 'temsignup/images/11.jpg' %} alt="">
+        </div>
+		<div class="form-inner">
+			<form method="post" action="{% url 'users:signup' %}">
+                {% csrf_token %}
+				<div class="form-header">
+					<h3 style="font-family: 'Quicksand', sans-serif;">Sign up</h3>
+					<img src={% static 'temsignup/images/sign-up.png' %} alt="" class="sign-up-icon">
+				</div>
+                    
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group ">
+                        <p >{{ field.label_tag }}</p>
+                        {{ field }}<br>
+                        {% if field.help_text %}
+                            <small style="color: white">{{ field.help_text }}</small>
+                        {% endif %}
+                        {% for error in field.errors %}
+                            <p style="color: red">{{ error }}</p>
+                        {% endfor %}<br>   
+                    </div>
+                {% endfor %}
+				    
+                <input class="button" type="submit" value="create my account"><br>
+            </form>
+            <button onclick=location.href="{% url 'users:login' %}" type="button">I am already member</button>
+            <br><br>
+		</div>
+	</div>
+{% endblock %}

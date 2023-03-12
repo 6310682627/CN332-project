@@ -1,0 +1,97 @@
+{% extends 'users/layout.html' %}
+{%block body%}
+  {% if  user.is_authenticated %}
+    <header id="masthead" class="site-header">
+      <nav id="primary-navigation" class="site-navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="site-title"><span>Car</span>Tracking</a>
+          </div>
+          <!-- /.navbar-header -->
+
+          <div class="collapse navbar-collapse" id="agency-navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active">
+                <a href="index.html" data-toggle="dropdown">Home</a>
+              </li>
+              <li><a href="">Location</a></li>
+              <li><a href="">Request</a></li>
+              <li><a href="">Statistics</a></li>
+              <li><br /></li>
+              <li><br /></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                  >Profile & Log Out<i
+                    class="fa fa-caret-down hidden-xs"
+                    aria-hidden="true"
+                  ></i
+                ></a>
+
+                <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                  <li><a href={% url 'users:index' %}>Profile</a></li>
+                  <li><a href={% url 'users:logout' %}>Log Out</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- /.site-navigation -->
+    </header>
+    <!-- /#mastheaed -->
+  {% else %}
+  <header id="masthead" class="site-header">
+    <nav id="primary-navigation" class="site-navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="site-title"><span>Car</span>Tracking</a>
+        </div>
+        <!-- /.navbar-header -->
+
+        <div class="collapse navbar-collapse" id="agency-navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active">
+              <a href="index.html" data-toggle="dropdown">Home</a>
+            </li>
+            <li><a href="">Location</a></li>
+            <li><a href="">Request</a></li>
+            <li><a href="">Statistics</a></li>
+            <li><br /></li>
+            <li><br /></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                >Log In & Sign Up<i
+                  class="fa fa-caret-down hidden-xs"
+                  aria-hidden="true"
+                ></i
+              ></a>
+
+              <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                <li><a href={% url 'users:login' %}>Log In</a></li>
+                <li><a href={% url 'users:signup' %}>Sign up</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- /.site-navigation -->
+  </header>
+  <!-- /#mastheaed -->
+  {% endif %}
+    <div id="hero" class="hero overlay">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Smart Traffic Counting</h1>
+          <p></p>
+          <a href="#" class="btn btn-border">Location</a>
+        </div>
+        <!-- /.hero-text -->
+      </div>
+      <!-- /.hero-content -->
+    </div>
+    <!-- /.hero -->
+  
+
+
+{% endblock %}
