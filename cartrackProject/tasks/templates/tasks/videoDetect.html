@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <title>mytasks</title>
+   <style type="text/css">
+      body {
+      width: 800px;
+      margin: 20px auto;
+      }
+   </style>
+</head>
+<body>
+   <h2>Tracked Video</h2><br>
+	<button><a href="{% url 'mytasks:upload_video' %}"> back to upload </a></button><br>
+   <button><a href="{% url 'mytasks:task' %}"> Task List </a></button>
+      {% if d %}
+         <video width="1080" height="720" controls>
+         <source src="{{ MEDIA_URL }}/{{ video_name }}"  type="video/mp4">
+         </video>
+      {% endif %}
+ 
+</body>
+
+</html>

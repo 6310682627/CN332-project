@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <title>mytasks</title>
+   <style type="text/css">
+      body {
+      width: 800px;
+      margin: 20px auto;
+      }
+
+      table, th, td {
+			border: 1px solid black;
+			border-collapse: collapse;
+			padding: .5em;
+		}
+   </style>
+</head>
+<body>
+   <h1>Task List</h1>
+   <button><a href="{% url 'mytasks:upload_video' %}"> Upload</a></button>
+   <br>
+   <table>
+		<thead>
+			<tr>
+            <th>Date</th>
+            <th>Owner</th>
+				<th>Original Video</th>
+            <th>Tracking Video</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for i in count %}
+				<tr>
+               <td>
+                  {% for n, m in date %}
+                     {% if i == n  %}
+                        <p>{{ m }}</p>
+                     {% endif %}
+                  {% endfor %}
+               </td>
+
+               <td>
+                  {% for a, b in user %}
+                     {% if i == a  %}
+                        <p>{{ b }}</p>
+                     {% endif %}
+                  {% endfor %}
+               </td>
+
+					<td>
+						<video width="320" height="240" controls>
+							<source src="{{ MEDIA_URL }}/videos_uploaded/{{ i }}"  type="video/mp4">
+						</video><br>
+					</td>
+
+					<td>
+						<video width="320" height="240" controls>
+							<source src="{{ MEDIA_URL }}/videos_tracking/object_tracking/{{ i }}"  type="video/mp4">
+						</video><br>
+					</td>
+
+					<td>
+                  {% for x, y in id %}
+                     {% if i not in name_track and i == x  %}
+                        <button><a href="{% url 'mytasks:videoDetect' y %}"> detect </a></button>      
+                     {% endif %}
+                  {% endfor %}
+
+						{% if i in name_track %}
+							<p style="color: green">finish!</p>
+						{% endif %}
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</body>
+
+</html>
