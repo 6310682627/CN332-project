@@ -137,4 +137,4 @@ import os
 
 MEDIA_ROOT = os.path.join(BASE_DIR, '')
 
-MEDIA_URL = '/media/'
+MEDIA_URL = '/'
