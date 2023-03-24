@@ -2,10 +2,14 @@ from __future__ import absolute_import, unicode_literals
 from celery import shared_task
 import torch
 import sys
+from .models import OriginalVideo, TrackingVideo
+from django.shortcuts import render
+from django.http import HttpResponse
+
+
 
 sys.path.append('./arial-car-track')
 import detect
-from .models import *
 
 class Opt:
     
@@ -21,7 +25,7 @@ class Opt:
     save_txt = False
     save_conf = True
     nosave = False
-    classes = 0
+    classes = 0,1,2,3,4,5
     agnostic_nms = True
     augment = True
     update = True
@@ -36,11 +40,4 @@ def Detect(opt):
     with torch.no_grad():
         d = detect.Detector(opt)
         d.run(opt)
-    my_files = OriginalVideo.objects.filter(video__contains=f"videos_uploaded/VideoKodShort.mp4")
-    TrackingVideo.objects.create(
-        original = my_files.first(),
-        video = f"videos_tracking/object_tracking/VideoKodShort.mp4",
-    )
-    
-    return "finish!"
-    
+    return str('ok')
