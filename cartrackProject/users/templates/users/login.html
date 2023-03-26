@@ -25,9 +25,11 @@
         	{% endif %}
 
 			<input class="button1" type="submit" value="Log In"><br>
+
+			<button onclick=location.href="{% url 'users:signup' %}" type="button">Create an account</button>
 		</form>
 
-		<button onclick=location.href="{% url 'users:signup' %}" type="button">Create an account</button>
+		
 	</div>
 	
 </div>

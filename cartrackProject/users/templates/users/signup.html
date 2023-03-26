@@ -28,8 +28,10 @@
                 {% endfor %}
 				    
                 <input class="button" type="submit" value="create my account"><br>
+
+                <button onclick=location.href="{% url 'users:login' %}" type="button">I am already member</button>
             </form>
-            <button onclick=location.href="{% url 'users:login' %}" type="button">I am already member</button>
+            
             <br><br>
 		</div>
 	</div>

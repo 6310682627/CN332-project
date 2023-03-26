@@ -33,6 +33,71 @@
 */
 
 
+.color-finish{
+    color: #2D6244;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
+.color-data{
+    color: #cc8080;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+font-weight: 400;
+}
+
+/* CUSTOM Table
+================================================== */
+.content-table{
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 1000px;
+    border-radius:10px 10px 0 0;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.content-table thead tr{
+    background-color: #b63d42;
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.content-table th,
+.content-table td{
+    padding: 12px 15px;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    
+
+}
+
+.content-table tbody tr{
+    border-bottom: 1px solid #ffd0d0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    
+}
+
+.content-table tbody tr:nth-of-type(even){
+    background-color: #ffeded;
+}
+
+.content-table tbody tr:last-of-type{
+    border-bottom: 2px solid #c05c5f;
+}
+
+.content-table tbody tr.active-row{
+    font-weight: bold;
+    color: #c05c5f;
+}
+
 /* CUSTOM RESETS
 ================================================== */
 a {
@@ -111,6 +176,26 @@ p + p {
 .btn-green {
     background-color: #6fc754;
     color: #fff;  
+}
+
+.btn-coral {
+    background-color: #da5e48;
+    color: #ffffff;  
+}
+
+.btn-dark {
+    background-color: #4f3c3c;
+    color: #efe0c1;  
+}
+
+.btn-detect {
+    background-color: #eeae94;
+    color: #9c3933;  
+}
+
+.btn-upload {
+    background-color: #FBC9C4;
+    color: #AF291E;  
 }
 
 .btn:hover,
@@ -716,7 +801,7 @@ html, body {
 .slicknav_open .slicknav_arrow,
 .slicknav_nav > li a:hover {
     background-color: transparent;
-    color: #ad7c5b;
+    color: #b57f21;
 }
 
 .navbar-toggle {
@@ -779,7 +864,7 @@ html, body {
 /* HERO
 ================================================== */
 .hero { 
-    background: url(../img/3.jpg) no-repeat center / cover; 
+    background: url(../img/46.jpg) no-repeat center / cover; 
     height: 100%;
     width: 100%;
     display: table;
@@ -788,7 +873,7 @@ html, body {
 
 .overlay:before {
   content: '';
-  background-color: rgba(226, 234, 236, 0.819);
+  background-color: rgba(226, 234, 236, 0.763);
   height: 100%;
   width: 100%;
   position: absolute;
@@ -873,12 +958,12 @@ html, body {
     color: #003acd;
 }
 
-.portfolio-hero {
-    background: url(../img/portfolio-hero.jpg) no-repeat center / cover;     
+.upload-hero {
+    background: url(../img/45.jpg) no-repeat center / cover;     
 }
 
-.blog-hero {
-    background: url(../img/blog-hero.jpg) no-repeat center / cover;     
+.task-hero {
+    background: url(../img/48.jpg) no-repeat center / cover;     
 }
 
 .contact-hero {
@@ -912,7 +997,7 @@ html, body {
     height: 2px;
     width: 50px;
     margin: 0 auto;
-    background-color: #267df4;
+    background-color: #cd5858;
 }
 
 /* Section: Features */

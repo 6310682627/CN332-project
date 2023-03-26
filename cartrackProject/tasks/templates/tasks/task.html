@@ -1,81 +1,119 @@
-<!DOCTYPE html>
-<html>
-<head>
-   <meta charset="utf-8">
-   <title>mytasks</title>
-   <style type="text/css">
-      body {
-      width: 800px;
-      margin: 20px auto;
-      }
+{% extends 'users/layout.html' %}
+{%block body%}
 
-      table, th, td {
-			border: 1px solid black;
-			border-collapse: collapse;
-			padding: .5em;
-		}
-   </style>
-</head>
-<body>
-   <h1>Task List</h1>
-   <button><a href="{% url 'mytasks:upload_video' %}"> Upload</a></button>
-   <br>
-   <table>
-		<thead>
-			<tr>
-            <th>Date</th>
-            <th>Owner</th>
-				<th>Original Video</th>
-            <th>Tracking Video</th>
-				<th>Status</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for i in count %}
-				<tr>
-               <td>
-                  {% for n, m in date %}
-                     {% if i == n  %}
-                        <p>{{ m }}</p>
-                     {% endif %}
-                  {% endfor %}
-               </td>
+<header id="masthead" class="site-header site-header-white">
+	<nav id="primary-navigation" class="site-navigation">
+		<div class="container">
 
-               <td>
-                  {% for a, b in user %}
-                     {% if i == a  %}
-                        <p>{{ b }}</p>
-                     {% endif %}
-                  {% endfor %}
-               </td>
+			<div class="navbar-header">
+			   
+				<a class="site-title"><span>Car</span>Tracking</a>
 
-					<td>
-						<video width="320" height="240" controls>
-							<source src="{{ MEDIA_URL }}/videos_uploaded/{{ i }}"  type="video/mp4">
-						</video><br>
-					</td>
+			</div><!-- /.navbar-header -->
 
-					<td>
-						<video width="320" height="240" controls>
-							<source src="{{ MEDIA_URL }}/videos_tracking/object_tracking/{{ i }}"  type="video/mp4">
-						</video><br>
-					</td>
+			<div class="collapse navbar-collapse" id="agency-navbar-collapse">
+				<ul class="nav navbar-nav navbar-right">
+                  <li><a href="{% url 'users:index' %}">Home</a></li>
+              		<li class="active"><a href="{% url 'mytasks:task' %}">Task List</a></li>
+              		<li ><a href="{% url 'mytasks:upload_video' %}">Upload VDO</a></li>
+              		<li><a href="">Statistics</a></li>
+              		<li><br /></li>
+              		<li><br /></li>
+              		<li class="dropdown">
+                		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile & Log Out<i class="fa fa-caret-down hidden-xs"
+                    		aria-hidden="true"></i></a>
 
-					<td>
-                  {% for x, y in id %}
-                     {% if i not in name_track and i == x  %}
-                        <button><a href="{% url 'mytasks:videoDetect' y %}"> detect </a></button>      
-                     {% endif %}
-                  {% endfor %}
+                		<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                  		<li><a href={% url 'users:index' %}>Profile</a></li>
+                  		<li><a href={% url 'users:logout' %}>Log Out</a></li>
+                		</ul>
+              		</li>
+            		</ul>
 
-						{% if i in name_track %}
-							<p style="color: green">finish!</p>
-						{% endif %}
-					</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-</body>
+			</div>
 
-</html>
+		</div>   
+	</nav><!-- /.site-navigation -->
+</header><!-- /#mastheaed -->
+
+<div id="hero" class="hero overlay subpage-hero task-hero">
+	<div class="hero-content">
+		<div class="hero-text">
+			<h1>Task List</h1>
+		</div><!-- /.hero-text -->
+	</div><!-- /.hero-content -->
+</div><!-- /.hero -->
+
+<main id="main" class="site-main">
+	<section class="site-section subpage-site-section">
+		<div class="container">
+			<div class="row mt-50">
+            <div class="col-md-8 col-md-offset-2">
+               <h2 class="text-center heading-separator">Task list</h2>
+               <div class="text-center">
+                  <a class="btn btn-upload" href="{% url 'mytasks:upload_video' %}">Upload</a>
+               </div>
+            </div>
+         </div>
+         <table class="content-table"><center>
+            <thead>
+               <tr>
+                  <th>Date</th>
+                  <th>Owner</th>
+                  <th>Original Video</th>
+                  <th>Tracking Video</th>
+                  <th>Status</th>
+               </tr>
+            </thead>
+            <tbody>
+               {% for i in count %}
+                  <tr>
+                     <td>
+                        {% for n, m in date %}
+                           {% if i == n  %}
+                              <p class="color-data">{{ m }}</p>
+                           {% endif %}
+                        {% endfor %}
+                     </td>
+      
+                     <td>
+                        {% for a, b in user %}
+                           {% if i == a  %}
+                              <p class="color-data">{{ b }}</p>
+                           {% endif %}
+                        {% endfor %}
+                     </td>
+      
+                     <td>
+                        <video width="320" height="240" controls>
+                           <source src="{{ MEDIA_URL }}/videos_uploaded/{{ i }}"  type="video/mp4">
+                        </video><br>
+                     </td>
+      
+                     <td>
+                        <video width="320" height="240" controls>
+                           <source src="{{ MEDIA_URL }}/videos_tracking/object_tracking/{{ i }}"  type="video/mp4">
+                        </video><br>
+                     </td>
+      
+                     <td>
+                        {% for x, y in id %}
+                           {% if i not in name_track and i == x  %}
+                              <a class="btn btn-detect" href="{% url 'mytasks:videoDetect' y %}" > Detect</a>    
+                           {% endif %}
+                        {% endfor %}
+      
+                        {% if i in name_track %}
+                           <p class="color-finish">Finish!</p>
+                        {% endif %}
+                     </td>
+                  </tr>
+               {% endfor %}
+            </tbody>
+         </table>
+		</div>
+	</section>
+</main><!-- /#main -->
+   
+{% endblock %}
+   

@@ -1,25 +1,76 @@
-<!DOCTYPE html>
-<html>
-<head>
-   <meta charset="utf-8">
-   <title>mytasks</title>
-   <style type="text/css">
-      body {
-      width: 800px;
-      margin: 20px auto;
-      }
-   </style>
-</head>
-<body>
-   <h2>Tracked Video</h2><br>
-	<button><a href="{% url 'mytasks:upload_video' %}"> back to upload </a></button><br>
-   <button><a href="{% url 'mytasks:task' %}"> Task List </a></button>
-      {% if d %}
-         <video width="1080" height="720" controls>
-         <source src="{{ MEDIA_URL }}/{{ video_name }}"  type="video/mp4">
-         </video>
-      {% endif %}
- 
-</body>
+{% extends 'users/layout.html' %}
+{%block body%}
 
-</html>
+<header id="masthead" class="site-header site-header-white">
+	<nav id="primary-navigation" class="site-navigation">
+		<div class="container">
+
+			<div class="navbar-header">
+			   
+				<a href="{% url 'users:index' %}" class="site-title"><span>Car</span>Tracking</a>
+
+			</div><!-- /.navbar-header -->
+
+			<div class="collapse navbar-collapse" id="agency-navbar-collapse">
+				<ul class="nav navbar-nav navbar-right">
+                  <li><a href="{% url 'users:index' %}">Home</a></li>
+              		<li><a href="{% url 'mytasks:task' %}">Task List</a></li>
+              		<li><a href="{% url 'mytasks:upload_video' %}">Upload VDO</a></li>
+              		<li><a href="">Statistics</a></li>
+              		<li><br /></li>
+              		<li><br /></li>
+              		<li class="dropdown">
+                		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile & Log Out<i class="fa fa-caret-down hidden-xs"
+                    		aria-hidden="true"></i></a>
+
+                		<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                  		<li><a href={% url 'users:index' %}>Profile</a></li>
+                  		<li><a href={% url 'users:logout' %}>Log Out</a></li>
+                		</ul>
+              		</li>
+            		</ul>
+
+			</div>
+
+		</div>   
+	</nav><!-- /.site-navigation -->
+</header><!-- /#mastheaed -->
+
+<div id="hero" class="hero overlay subpage-hero task-hero">
+	<div class="hero-content">
+		<div class="hero-text">
+			<h1>Tracked Video</h1>
+		</div><!-- /.hero-text -->
+	</div><!-- /.hero-content -->
+</div><!-- /.hero -->
+
+<main id="main" class="site-main">
+	<section class="site-section subpage-site-section">
+		<div class="container">
+			<div class="row mt-50">
+            <div class="col-md-8 col-md-offset-2">
+               <div class="text-center">
+                  <a class="btn btn-upload" href="{% url 'mytasks:upload_video' %}">Back to Upload</a>
+                  <a class="btn btn-dark" href="{% url 'mytasks:task' %}">Task List</a>
+               </div>
+            </div>
+         </div>
+
+         <div class="row mt-50">
+            <div class="col-md-8 col-md-offset-2">
+               <h2 class="text-center heading-separator">Task list</h2>
+            </div>
+            <center>     
+            {% if d %}
+               <video width="1080" height="720" controls>
+               <source src="{{ MEDIA_URL }}/{{ video_name }}"  type="video/mp4">
+               </video>
+            {% endif %}
+            </center> 
+         </div>
+		</div>
+	</section>
+</main><!-- /#main -->
+
+{% endblock %}
+      
