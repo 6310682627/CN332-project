@@ -3,8 +3,8 @@ import os
 from celery import Celery
 
 # setting the Django settings module.
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'celery_task.settings')
-app = Celery('tasks')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'cartrackProject.settings')
+app = Celery('cartrackProject')
 # app.config_from_object('django.conf:settings', namespace='CELERY')
 app.conf.broker_url = 'redis://localhost:6379/0'
 

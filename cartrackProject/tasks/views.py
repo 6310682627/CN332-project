@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .tasks import Detect, Opt
+from .tasks import Detect, Opt, optJson
 from django.http import HttpResponse
 from .models import OriginalVideo, TrackingVideo
 from django.contrib.auth.models import User
@@ -14,15 +14,15 @@ def testDetect(request):
 
 
 def videoDetect(request,video_id):
-	opt = Opt()
+	opt = optJson
 	video = OriginalVideo.objects.get(id=video_id).video
 	TrackingVideo.objects.create(
 		original = OriginalVideo.objects.get(id=video_id), 
 		video = "videos_tracking/object_tracking/" + video.name.split('/')[1]
 		)
 	video_name = 'videos_tracking/object_tracking/' + video.name.split('/')[1]
-	opt.source = video.path 
-	d = Detect(opt)
+	opt['source'] = video.path 
+	d = Detect.delay(opt)
 	return render(request, 'tasks/videoDetect.html', {
         'd': d,
 		'video_name':video_name

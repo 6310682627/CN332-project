@@ -138,3 +138,6 @@ import os
 MEDIA_ROOT = os.path.join(BASE_DIR, '')
 
 MEDIA_URL = '/'
+
+CELERY_BROKER_URL = "redis://localhost:6379"
+CELERY_RESULT_BACKEND = "redis://localhost:6379"

@@ -164,7 +164,7 @@ class Detector:
                             else:  # stream
                                 fps, w, h = 30, im0.shape[1], im0.shape[0]
                                 save_path += '.mp4'
-                            self.vid_writer = cv2.VideoWriter(save_path, cv2.VideoWriter_fourcc(*'mp4v'), fps, (w, h))
+                            self.vid_writer = cv2.VideoWriter(save_path, cv2.VideoWriter_fourcc(*'vp09'), fps, (w, h))
                         self.vid_writer.write(im0)
 
         if self.save_txt or self.save_img:
