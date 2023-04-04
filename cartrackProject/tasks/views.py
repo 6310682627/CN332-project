@@ -1,13 +1,16 @@
 from django.shortcuts import render
-from .tasks import Detect, Opt, optJson
+from .tasks import Detect, optJson, Detect_and_Track
 from django.http import HttpResponse
 from .models import OriginalVideo, TrackingVideo
 from django.contrib.auth.models import User
 
 def testDetect(request):
-    opt = Opt()
-    opt.source = "./videos_uploaded/videoKodShort.mp4"
-    d = Detect(opt)
+    opt = optJson
+    opt['source'] = "./sample_videos/videos_uploaded/videoShort.mp4"
+    opt['name'] = "loop_VideoShort"
+    opt['loop'] = "./arial-car-track/loop/loop1counterclockwise.json"
+    
+    d = Detect_and_Track.delay(opt)
     return render(request, 'tasks/testDetect.html', {
         'd': d,
     })

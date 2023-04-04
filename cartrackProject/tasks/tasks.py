@@ -10,6 +10,7 @@ from django.http import HttpResponse
 
 sys.path.append('./arial-car-track')
 import detect
+import detect_and_track
 
 class Opt:
     def __init__(self, optJson):
@@ -33,6 +34,11 @@ class Opt:
         self.name = optJson["name"]
         self.exist_ok = optJson["exist_ok"]
         self.no_trace = optJson["no_trace"]
+        self.colored_trk = optJson["colored_trk"]
+        self.loop = optJson["loop"]
+        self.loop_txt = optJson["loop_txt"]
+        self.summary_txt = optJson["summary_txt"]
+
 
 optJson = {
     "weights": './arial-car-track/yolov7.pt',
@@ -55,6 +61,10 @@ optJson = {
     "name": 'object_tracking',
     "exist_ok": True,
     "no_trace": True,
+    "colored_trk": True,
+    "loop": "./arial-car-track/loop/loop.json",
+    "loop_txt": True,
+    "summary_txt": True,
 }
 
 
@@ -63,5 +73,13 @@ def Detect(optJson):
     opt = Opt(optJson)
     with torch.no_grad():
         d = detect.Detector(opt)
+        d.run(opt)
+    return str('ok')
+
+@shared_task
+def Detect_and_Track(optJson):
+    opt = Opt(optJson)
+    with torch.no_grad():
+        d = detect_and_track.DetectorWithTrack(opt)
         d.run(opt)
     return str('ok')

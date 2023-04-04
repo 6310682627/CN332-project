@@ -125,7 +125,12 @@ def line_exit_check_and_set(loop,track,tp1,tp2,line_start,line_end,line_side): #
 
 
 #check if item entering or exit loop
-def check_enter_exit_loop(track):
+def check_enter_exit_loop(track, loop):
+    #load loops settings
+    f = open(loop)
+    count_boxes = json.load(f)
+    f.close()
+
     loops = count_boxes["loops"]
     for loop in loops:
         #print(loop)
@@ -142,7 +147,12 @@ def check_enter_exit_loop(track):
             line_exit_check_and_set(loop,track,tp1,tp2,pt3,pt0,"right")
 
 #draw bouncing box to loop
-def draw_loops(img):
+def draw_loops(img, loop):
+    #load loops settings
+    f = open(loop)
+    count_boxes = json.load(f)
+    f.close()
+
     loops = count_boxes["loops"]
     for loop in loops:
         pt0,pt1,pt2,pt3 = loop["points"]
@@ -160,11 +170,16 @@ class DetectorWithTrack:
         global time_stamp
         global names
         global loop_boxes
-        global names
+
         self.source, self.weights, self.view_img, self.save_txt, self.imgsz, self.trace, self.colored_trk = opt.source, opt.weights, opt.view_img, opt.save_txt, opt.img_size, not opt.no_trace, opt.colored_trk
         self.save_img = not opt.nosave and not self.source.endswith('.txt')  # save inference images
         self.webcam = self.source.isnumeric() or self.source.endswith('.txt') or self.source.lower().startswith(
         ('rtsp://', 'rtmp://', 'http://', 'https://'))
+        #load loops settings
+        f = open(opt.loop)
+        count_boxes = json.load(f)
+        f.close()
+
         #.... Initialize SORT .... 
         #......................... 
         sort_max_age = 25 #5 
@@ -220,7 +235,7 @@ class DetectorWithTrack:
     def getColor(self):
         return [[random.randint(0, 255) for _ in range(3)] for _ in names]
 
-    def run(self):
+    def run(self, opt):
         # Run inference
         if self.device.type != 'cpu':
             self.model(torch.zeros(1, 3, self.imgsz, self.imgsz).to(self.device).type_as(next(self.model.parameters())))  # run once
@@ -241,7 +256,7 @@ class DetectorWithTrack:
         img = None
         counttable = count_table.CountTable(img,None,
                     list(names),["Straight","Left","Right"],border_color=(0,255,0),text_color=(0,0,255))
-        frame_count = 0;
+        frame_count = 0
         for path, img, im0s, vid_cap in self.dataset:
             fps = vid_cap.get(cv2.CAP_PROP_FPS)
             time_stamp = frame_count/fps #calculate time stamp
@@ -314,7 +329,7 @@ class DetectorWithTrack:
                     for track in tracks:
 
                         #tracking object passing line check and update
-                        check_enter_exit_loop(track)
+                        check_enter_exit_loop(track, opt.loop)
 
                         # color = compute_color_for_labels(id)
                         #draw colored tracks
@@ -375,7 +390,7 @@ class DetectorWithTrack:
             # cv2.putText(im0s,f"Pickup   {cnts[2][0]}           {cnts[2][1]}           {cnts[2][2]} ", (500, 510),cv2.FONT_HERSHEY_SIMPLEX, 
             #             0.6, [0, 255, 0], 2)
 
-            draw_loops(im0s)
+            draw_loops(im0s, opt.loop)
                 # Stream results
             if self.view_img:
                 cv2.imshow(str(p), im0)
@@ -440,10 +455,10 @@ if __name__ == '__main__':
     opt = parser.parse_args()
     print(opt)
 
-    #load loops settings
-    f = open(opt.loop)
-    count_boxes = json.load(f)
-    f.close()
+    # #load loops settings
+    # f = open(opt.loop)
+    # count_boxes = json.load(f)
+    # f.close()
 
     #check_requirements(exclude=('pycocotools', 'thop'))
     if opt.download and not os.path.exists(str(opt.weights)):
