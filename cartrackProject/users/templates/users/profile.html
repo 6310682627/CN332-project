@@ -1,0 +1,128 @@
+{% extends 'users/layout.html' %}
+{%block body%}
+  {% if  user.is_authenticated %}
+  <header id="masthead" class="site-header site-header-white">
+    <nav id="primary-navigation" class="site-navigation">
+        <div class="container">
+
+            <div class="navbar-header">
+               
+                <a href="{% url 'users:index' %}" class="site-title"><span>Car</span>Tracking</a>
+
+            </div><!-- /.navbar-header -->
+
+            <div class="collapse navbar-collapse" id="agency-navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                  <li><a href="{% url 'users:index' %}">Home</a></li>
+                      <li><a href="{% url 'mytasks:task' %}">Task List</a></li>
+                      <li><a href="{% url 'mytasks:upload_video' %}">Upload VDO</a></li>
+                      <li><br /></li>
+                      <li><br /></li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile & Log Out<i class="fa fa-caret-down hidden-xs"
+                            aria-hidden="true"></i></a>
+
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                            <li  class="active"><a href={% url 'users:profile' %}>Profile</a></li>
+                            <li><a href="{% url 'users:logout' %}">Log Out</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+
+            </div>
+
+        </div>   
+    </nav><!-- /.site-navigation -->
+</header><!-- /#mastheaed -->
+  {% endif %}
+<body>
+    <div id="hero" class="hero overlay subpage-hero contact-hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Profile</h1>
+                <ol class="breadcrumb"></ol>
+            </div><!-- /.hero-text -->
+        </div><!-- /.hero-content -->
+    </div><!-- /.hero -->
+
+    <main id="main" class="site-main">
+
+        <section class="site-section subpage-site-section section-contact-us">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-7">
+                            <div class="row">
+                                <div class="col-md-5 ">
+                                    <div class="form-group">
+                                      <label for="name">Name: {{ user.first_name }}  {{ user.last_name }}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-7 mt-10">
+                                    <div class="form-group">
+                                      <label for="email">E-mail: {{user.email}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>    
+                </div>    
+                <br><br>
+                <h2>Update Information</h2>
+                {% if user_form.errors %}
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <div id="form_errors">
+                            {% for key, value in user_form.errors.items %}
+                                <strong>{{ value }}</strong>
+                            {% endfor %}
+                        </div>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endif %}
+
+                    <div class="form-content">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <lable >Username: {{ user_form.username }} </lable><br>
+                                </div>
+                             </div>
+                            <div class="col-md-6 mt-10">
+                                <div class="form-group">
+                                    <lable >Email: {{ user_form.email }}</lable><br>
+                                </div>
+                            </div>  
+
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <lable>Name:  </lable>
+                                    <input type="name" class="form-control" id= "{{ user_form.first_name }}
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <lable>Surname:  </lable>
+                                    <input type="Surname" class="form-control" id="{{ user_form.last_name }}
+                                </div>
+                            </div>
+                            
+                            <div class="text-center">
+                                <br>
+                                <a class="btn btn-upload" href="{% url 'users:change_password' %}">Change Password</a>
+                                <br>
+                                <button type="reset" class="btn btn-reset mb-10">Reset</button>
+                                <button type="submit" class="btn btn-save mb-10">Save</button><br><br>
+                                
+                            </div>
+                        </form>
+                    </div> 
+            </div>
+            
+        </section><!-- /.section-contact-us -->
+
+    </main><!-- /#main -->
+
+{% endblock %}

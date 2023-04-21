@@ -198,6 +198,23 @@ p + p {
     color: #AF291E;  
 }
 
+.btn-change {
+    background-color: #695356;
+    color: #FDBB63;  
+}
+
+.btn-reset {
+    background-color: #C56869;
+    color: #EBDBCE;  
+}
+
+
+.btn-save {
+    background-color: #5F3A42;
+    color: #E2B9B3;  
+}
+
+
 .btn:hover,
 button.btn:hover,
 .btn:focus,
@@ -668,7 +685,7 @@ select {
 .pagination > li.active > a,
 .pagination > li > a:hover,
 .pagination > li.active > a:hover {
-  background-color: #548cc7;
+  background-color: #a0434f;
   color: #fff;
 }
 
@@ -801,7 +818,7 @@ html, body {
 .slicknav_open .slicknav_arrow,
 .slicknav_nav > li a:hover {
     background-color: transparent;
-    color: #b57f21;
+    color: #db6e74;
 }
 
 .navbar-toggle {
@@ -834,7 +851,7 @@ html, body {
     border-radius: 0;
     min-width: 130px;
     border: 0;
-    border-top: 5px solid #915c48;
+    border-top: 5px solid #C25258;
     top: 140%;
     transition: all 0.4s;
     -moz-transition: all 0.4s;
@@ -967,7 +984,11 @@ html, body {
 }
 
 .contact-hero {
-    background: url(../img/contact-hero.jpg) no-repeat center / cover;     
+    background: url(../img/2222.jpg) no-repeat center / cover;     
+}
+
+.pass-hero {
+    background: url(../img/3333.jpg) no-repeat center / cover;     
 }
 
 /* SITEMAIN

@@ -80,19 +80,17 @@ class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=False, help_text='Optional.',widget=forms.TextInput(attrs={'class': 'form-control'}))
     last_name = forms.CharField(max_length=30, required=False, help_text='Optional.',widget=forms.TextInput(attrs={'class': 'form-control'}))
     email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.',widget=forms.TextInput(attrs={'class': 'form-control'}))
-    birth_date = forms.DateField(help_text='Required. Format: YYYY-MM-DD', widget=forms.DateInput(attrs={'class': 'form-control'}))
-    job = forms.CharField(max_length=200, required=False, help_text='Optional.',widget=forms.TextInput(attrs={'class': 'form-control'}))
     
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email', 'birth_date','job', 'password1', 'password2', )
+        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
         widgets = {'username' : forms.TextInput(attrs={'class': 'form-control'})}
 
 class UpdateUserForm(forms.ModelForm):
     username = forms.CharField(max_length=100,required=True,widget=forms.TextInput(attrs={'class': 'form-control'}))
-    first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
-    last_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
-    email = forms.EmailField(required=True,widget=forms.TextInput(attrs={'class': 'form-control'}))
+    first_name = forms.CharField(max_length=30, required=False, help_text='Optional.',widget=forms.TextInput(attrs={'class': 'form-control'}))
+    last_name = forms.CharField(max_length=30, required=False, help_text='Optional.',widget=forms.TextInput(attrs={'class': 'form-control'}))
+    email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.',widget=forms.TextInput(attrs={'class': 'form-control'}))
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email',]
