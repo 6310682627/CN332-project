@@ -17,3 +17,22 @@ class TrackingVideo(models.Model):
 
     def __str__(self):
         return f"tracking video: {self.id}"
+
+
+class Loop(models.Model):
+    originalVideo = models.ForeignKey(OriginalVideo, on_delete=models.CASCADE, null=True)
+    trackingVideo = models.ForeignKey(TrackingVideo, on_delete=models.CASCADE , null=True)
+    x1 = models.IntegerField()
+    y1 = models.IntegerField()
+    x2 = models.IntegerField()
+    y2 = models.IntegerField()
+    x3 = models.IntegerField()
+    y3 = models.IntegerField()
+    x4 = models.IntegerField()
+    y4 = models.IntegerField()
+    orientation = models.TextField(default="clockwise")
+class LoopWrapper(models.Model) :
+        loop1 = models.ForeignKey(Loop, on_delete=models.CASCADE, related_name="loop1")
+        loop2 = models.ForeignKey(Loop, on_delete=models.CASCADE, related_name="loop2")
+        loop3 = models.ForeignKey(Loop, on_delete=models.CASCADE, related_name="loop3")
+        loop4 = models.ForeignKey(Loop, on_delete=models.CASCADE, related_name="loop4")

@@ -1,0 +1,215 @@
+{% extends 'users/layout.html' %}
+{%block body%}
+<header id="masthead" class="site-header site-header-white">
+    <nav id="primary-navigation" class="site-navigation">
+        <div class="container">
+
+            <div class="navbar-header">
+
+                <a href="{% url 'users:index' %}" class="site-title"><span>Car</span>Tracking</a>
+
+            </div><!-- /.navbar-header -->
+
+            <div class="collapse navbar-collapse" id="agency-navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{% url 'users:index' %}">Home</a></li>
+                    <li><a href="{% url 'mytasks:task' %}">Task List</a></li>
+                    <li class="active"><a href="{% url 'mytasks:upload_video' %}">Upload VDO</a></li>
+                    <li><a href="">Statistics</a></li>
+                    <li><br /></li>
+                    <li><br /></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile & Log Out<i
+                                class="fa fa-caret-down hidden-xs" aria-hidden="true"></i></a>
+
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                            <li><a href={% url 'users:index' %}>Profile</a></li>
+                            <li><a href={% url 'users:logout' %}>Log Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+    </nav><!-- /.site-navigation -->
+</header><!-- /#mastheaed -->
+
+<div id="hero" class="hero overlay subpage-hero upload-hero">
+    <div class="hero-content">
+        <div class="hero-text">
+            <h1>Set Loop Video </h1>
+        </div><!-- /.hero-text -->
+    </div><!-- /.hero-content -->
+</div><!-- /.hero -->
+
+<main id="main" class="site-main">
+
+    <section class="site-section subpage-site-section">
+        <div class="container">
+            <div class="typography">
+                <h2 class="text-center heading-separator">Set Loop Video</h2>
+            </div>
+
+        </div>
+        <div style="height: 100%;width: 100%;">
+            <div style="position: relative;width: 960px; height: 540px;left: 32%;">
+                <video src="{{video}}" style="
+                width: 960px; height: 540px;
+                position: absolute;
+                opacity: 0.5;" loop autoplay playsinline webkit-playsinline muted></video>
+                <canvas onmouseover="" onclick="createPoint()" id="myCanvas"
+                    style="position: absolute;z-index: 10;width: 960px;height: 540px;"></canvas>
+
+            </div>
+            <div style="align-items: center;">
+                <button id="clearloop" onclick="clearloop()">clear</button>
+                <button onclick="submit('point1')">set loop1</button>
+                <button onclick="submit('point2')">set loop2</button>
+                <button onclick="submit('point3')">set loop3</button>
+                <button onclick="submit('point4')">set loop4</button>
+                <button onclick="orientation('counterclockwise')">counterclockwise</button>
+                <button onclick="orientation('clockwise')">clockwise</button>
+            </div>
+            <div>
+                <form action="{% url 'mytasks:set_loop' id %}" method="post">
+                    {% csrf_token %}
+                    <p>orientation</p>
+                    <input type="text" name="orientation" id="orientation" readonly>
+                    <p>Loop1</p>
+                    <input type="text" name="point1" id="" readonly>
+                    <input type="text" name="point1" id="" readonly>
+                    <input type="text" name="point1" id="" readonly>
+                    <input type="text" name="point1" id="" readonly>
+                    <p>Loop2</p>
+
+                    <input type="text" name="point2" id="" readonly>
+                    <input type="text" name="point2" id="" readonly>
+                    <input type="text" name="point2" id="" readonly>
+                    <input type="text" name="point2" id="" readonly>
+                    <p>Loop3</p>
+
+                    <input type="text" name="point3" id="" readonly>
+                    <input type="text" name="point3" id="" readonly>
+                    <input type="text" name="point3" id="" readonly>
+                    <input type="text" name="point3" id="" readonly>
+                    <p>Loop4</p>
+
+                    <input type="text" name="point4" id="" readonly>
+                    <input type="text" name="point4" id="" readonly>
+                    <input type="text" name="point4" id="" readonly>
+                    <input type="text" name="point4" id="" readonly>
+                    <br>
+                    <input type="submit">
+                </form>
+            </div>
+        </div>
+
+    </section>
+</main><!-- /#main -->
+<script>
+    var canvas = document.querySelector('canvas'),
+        ctx = canvas.getContext('2d');
+    fitToContainer(canvas);
+
+    // ctx.fillStyle = 'yellow';
+    // for (var i = 0; i < 5; ++i) ctx.fillRect(i * 18 + 2, 2, 16, 16);
+
+    function fitToContainer(canvas) {
+        canvas.style.width = '100%';
+        canvas.style.height = '100%';
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+    }
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    var points = []
+    var loop = []
+    var img = new Image();
+
+    // img.src = "./licensed-image.jpeg";
+
+    // img.onload = function () {
+    //   ctx.drawImage(img, 0, 0);
+    // };
+    function createPoint() {
+        console.log(event.clientY, event.clientX, $(window).scrollTop(), canvas.offsetLeft + event.clientX);
+        if (points.length == 4) return;
+        var x = parseInt(event.clientX - (- $(window).scrollLeft() + $('#myCanvas').offset().left));
+        var y = parseInt(event.clientY - (- $(window).scrollTop() + $('#myCanvas').offset().top));
+        console.log(x,y);
+        points.push([x, y]);
+        console.log(points);
+        console.log("Clicked at (" + x + ", " + y + ")");
+        ctx.fillStyle = "red"
+        ctx.fillRect(x, y, 5, 5);
+        if (points.length > 1) {
+            ctx.beginPath();
+            ctx.strokeStyle = "green";
+
+            ctx.moveTo(points[points.length - 2][0], points[points.length - 2][1]);
+            ctx.lineTo(points[points.length - 1][0], points[points.length - 1][1]);
+
+
+            ctx.stroke();
+
+        }
+        if (points.length == 4) {
+            ctx.beginPath();
+            ctx.strokeStyle = "green";
+            ctx.moveTo(points[0][0], points[0][1])
+            ctx.lineTo(points[points.length - 1][0], points[points.length - 1][1]);
+            ctx.stroke();
+        }
+    }
+
+    function clearPoint() {
+        points = []
+        // ctx.drawImage(img, 0, 0);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        console.log(points);
+    }
+    function clearloop() {
+        var fill = document.getElementsByName("point1");
+        for (var j = 0; j < fill.length; j++) {
+            fill[j].value = "0";
+        } var fill = document.getElementsByName("point2");
+        for (var j = 0; j < fill.length; j++) {
+            fill[j].value = "0";
+        } var fill = document.getElementsByName("point3");
+        for (var j = 0; j < fill.length; j++) {
+            fill[j].value = "0";
+        } var fill = document.getElementsByName("point4");
+        for (var j = 0; j < fill.length; j++) {
+            fill[j].value = "0";
+        }
+    }
+    function submit(point) {
+        var fill = document.getElementsByName(point);
+        for (var i = 0; i < fill.length; i++) {
+            console.log(String(points[i]).localeCompare("undefined"));
+            if (String(points[i]).localeCompare("undefined") != 0) {
+
+                fill[i].value = points[i];
+            }
+
+            else if (fill[i].value.localeCompare("0") != 0) {
+
+            }
+            else {
+                fill[i].value = "0";
+            }
+
+
+        }
+        clearPoint()
+    }
+    function orientation(clock){
+        var fill = document.getElementById("orientation");
+        fill.value = clock;
+    }
+
+
+
+</script>
+{% endblock %}
