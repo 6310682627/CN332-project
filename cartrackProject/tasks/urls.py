@@ -7,10 +7,12 @@ from . import views
 app_name = 'mytasks'
 urlpatterns = [
     path('task/', views.task, name='task'),
-    path('testDetect/', views.testDetect, name='testDetect'),
     path('upload/', views.upload_video, name='upload_video'),
-    path('videoDetect/<int:video_id>', views.videoDetect, name='videoDetect'),
-    path('setloopview/<int:id>', views.set_loop_view, name="set_loop_view"),
-    path('setloop/<int:id>',views.set_loop, name='set_loop'),
+    path('detect/<int:task_id>', views.detect, name='detect'),
+    path('task/<int:task_id>/loop', views.loop_dashboard, name='loop_dashboard'),
+    path('loop/new/<int:task_id>', views.new_loop, name='new_loop'),
+    path('loop/edit/<int:loop_id>/', views.edit_loop, name='edit_loop'),
+    path('loop/delete/<int:loop_id>/', views.delete_loop, name='delete_loop'),
+
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

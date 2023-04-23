@@ -1,0 +1,33 @@
+{% extends 'users/layout.html' %}
+
+{%block body%}
+<h1 class="loop-header">Loop Dashboard</h1>
+<a href="{% url 'mytasks:new_loop' task_id %}" class="btn btn-success btn-create btn-new-loop">+  New Loop</a>
+<a class="btn btn-dark" href="{% url 'mytasks:task' %}">Back to Task List</a>
+<br>
+
+<div class="video-section">
+    <div class="table-edit ml-3">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">Loop No.</th>
+                <th scope="col">Loop Name</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for loop in loops %}
+            <tr>
+                <td>{{ loop.pk }}</td>
+                <td>{{ loop.loop_name }}</td>
+                <td><a class="btn btn-warning" href="{% url 'mytasks:edit_loop' loop.pk %}" role="button">Edit</a>
+                <td><a class="btn btn-danger" href="{% url 'mytasks:delete_loop' loop.pk %}" role="button">Delete</a></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div> 
+{% endblock %}

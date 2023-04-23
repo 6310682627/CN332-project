@@ -60,8 +60,12 @@
 							<div class="col-sm-12">
 								<div class="form-group">
 									{% csrf_token %}
-									<label for="video">Video:</label>
-									<input type="file" name="video" id="video">
+									{{ task_form.as_p}}
+									<br>
+									{{ original_video_form.video }}
+								</div>
+								<br>
+								<div class="text-center">
 									<input class="btn btn-coral mb-10" type="submit" value="Upload">
 								</div>
 							</div>
@@ -71,48 +75,17 @@
 				</div>
 			</div>
 
-			
-
 			<div class="row mt-50">
 				<div class="row mt-50">
 					<div class="col-md-8 col-md-offset-2">
-						<h2 class="text-center heading-separator">Task list</h2>
 							<div class="text-center">
-								<a class="btn btn-dark" href="{% url 'mytasks:task' %}">Task List</a>
+								<a class="btn btn-dark" href="{% url 'mytasks:task' %}">Back to Task List</a>
 							</div>
+						</div>
 					</div>
 				</div>
-				<table class="content-table"><center>
-					<thead>
-						<tr>
-							<th>Original Video</th>
-							<th>Status</th>
-						</tr>
-					</thead>
-					<tbody>
-						{% for i in count %}
-							<tr class='active-row'>
-								<td>
-									<video width="320" height="240" controls>
-										<source src="{{ MEDIA_URL }}/videos_uploaded/{{ i }}"  type="video/mp4">
-									</video><br>
-								</td>
-								<td>
-									{% if i not in name_track and upload_success%}
-										<a href="{% url 'mytasks:videoDetect' video.id %}" class="btn btn-detect"> Detect </a>
-									{% endif %}
-
-									{% if i in name_track %}
-										<p class="color-finish">Finish!</p>
-									{% endif %}
-								</td>
-							</tr>
-						{% endfor %}
-					</tbody>
-					</center>
-				</table>
 			</div>
 		</div>
 	</section>
-</main><!-- /#main -->
+</main>
 {% endblock %}

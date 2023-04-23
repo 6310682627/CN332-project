@@ -3,3 +3,4 @@ meaw
 __pycache__
 cartrackProject/**/__pycache__/**
 cartrackProject/db.sqlite3
+**.pt

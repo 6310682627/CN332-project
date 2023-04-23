@@ -1,0 +1,26 @@
+{% extends 'users/layout.html' %}
+
+{%block body%}
+<style>
+  .btn-succes{
+      text-align: center;
+      margin-left: 600px ;
+      background-color: #df1c44;
+      color: white;
+  }
+
+  .btn-succes3{
+      background-color: #fecf6a;
+      color: white;
+  }
+
+</style>
+<section class="new-loop-form" >
+    <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %} 
+    {{ form.as_p }}
+    <button type="submit">Edit Loop</button>
+  </form>
+</section>
+<a class="btn btn-succes3 new-loop-back" href="{% url 'mytasks:loop_dashboard' task_id %}">back</a>
+{% endblock %}
