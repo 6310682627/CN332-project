@@ -1,26 +1,82 @@
 {% extends 'users/layout.html' %}
-
 {%block body%}
-<style>
-  .btn-succes{
-      text-align: center;
-      margin-left: 600px ;
-      background-color: #df1c44;
-      color: white;
-  }
+  {% if  user.is_authenticated %}
+  <header id="masthead" class="site-header site-header-white">
+    <nav id="primary-navigation" class="site-navigation">
+        <div class="container">
 
-  .btn-succes3{
-      background-color: #fecf6a;
-      color: white;
-  }
+            <div class="navbar-header">
+               
+                <a href="{% url 'users:index' %}" class="site-title"><span>Car</span>Tracking</a>
 
-</style>
-<section class="new-loop-form" >
-    <form method="POST" enctype="multipart/form-data">
-    {% csrf_token %} 
-    {{ form.as_p }}
-    <button type="submit">Edit Loop</button>
-  </form>
-</section>
-<a class="btn btn-succes3 new-loop-back" href="{% url 'mytasks:loop_dashboard' task_id %}">back</a>
+            </div><!-- /.navbar-header -->
+
+            <div class="collapse navbar-collapse" id="agency-navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                  <li><a href="{% url 'users:index' %}">Home</a></li>
+                      <li><a href="{% url 'mytasks:task' %}">Task List</a></li>
+                      <li><a href="{% url 'mytasks:upload_video' %}">Upload VDO</a></li>
+                      <li><a href="{% url 'users:index' %}">Statistic</a></li>
+                      <li><br /></li>
+                      <li><br /></li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile & Log Out<i class="fa fa-caret-down hidden-xs"
+                            aria-hidden="true"></i></a>
+
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                            <li><a href={% url 'users:profile' %}>Profile</a></li>
+                            <li><a href="{% url 'users:logout' %}">Log Out</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+
+            </div>
+
+        </div>   
+    </nav><!-- /.site-navigation -->
+</header><!-- /#mastheaed -->
+  {% endif %}
+<body>
+    <div id="hero" class="hero overlay subpage-hero new-hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Edit Loop</h1>
+                <ol class="breadcrumb"></ol>
+            </div><!-- /.hero-text -->
+        </div><!-- /.hero-content -->
+    </div><!-- /.hero -->
+
+    <main id="main" class="site-main">
+
+        <section class="site-section subpage-site-section section-contact-us">
+
+            <div class="container">
+                    <div class="form-content">
+
+                        <form method="POST" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        {% csrf_token %}
+                                        {{ form.as_p }}
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                <a class="btn btn-back" href="{% url 'mytasks:loop_dashboard' task_id %}">Back to Loop Dashboard</a>
+                                <button class="btn btn-edit1" type="submit">Edit Loop</button>
+                            
+                                </div>
+                            </div>
+                        </form>
+
+                       
+                            
+                            
+                    </div> 
+            </div>
+            
+        </section><!-- /.section-contact-us -->
+
+    </main><!-- /#main -->
+
 {% endblock %}

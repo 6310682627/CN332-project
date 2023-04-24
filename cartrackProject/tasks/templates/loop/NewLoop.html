@@ -16,6 +16,7 @@
                   <li><a href="{% url 'users:index' %}">Home</a></li>
                       <li><a href="{% url 'mytasks:task' %}">Task List</a></li>
                       <li><a href="{% url 'mytasks:upload_video' %}">Upload VDO</a></li>
+                      <li><a href="{% url 'users:index' %}">Statistic</a></li>
                       <li><br /></li>
                       <li><br /></li>
                       <li class="dropdown">
@@ -52,22 +53,26 @@
             <div class="container">
                 <h2>Information</h2>
                     <div class="form-content">
+
                         <form method="POST" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <div class="col-md-10">
-                                <div class="form-group">
-                                    {{ form.as_p }}
-                                    <br>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        {% csrf_token %}
+                                        {{ form.as_p }}
+                                    </div>
                                 </div>
-                             </div>
+                                <div class="text-center">
+                                <a class="btn btn-back" href="{% url 'mytasks:loop_dashboard' task_id %}">Back to Loop Dashboard</a>
+                                <button class="btn btn-new1" type="submit">New Loop</button>
                             
-                            <div class="text-center">
-                                <button class="btn btn-save" type="submit">New Loop</button>
-                                <br>
-                                <a class="btn btn-save" href="{% url 'mytasks:loop_dashboard' task_id %}">Back to Loop Dashboard</a>
-                                
+                                </div>
                             </div>
                         </form>
+
+                       
+                            
+                            
                     </div> 
             </div>
             
