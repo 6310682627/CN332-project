@@ -34,7 +34,7 @@
 
 
 .color-finish{
-    color: #2D6244;
+    color: #46a725;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
@@ -96,6 +96,57 @@ font-weight: 400;
 .content-table tbody tr.active-row{
     font-weight: bold;
     color: #c05c5f;
+}
+
+/* CUSTOM Table2
+================================================== */
+.content-table2{
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 1000px;
+    border-radius:10px 10px 0 0;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.content-table2 thead tr{
+    background-color: #925946;
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.content-table2 th,
+.content-table2 td{
+    padding: 12px 15px;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    
+
+}
+
+.content-table2 tbody tr{
+    border-bottom: 1px solid #f3eae7;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    
+}
+
+.content-table2 tbody tr:nth-of-type(even){
+    background-color: #f3eae7;
+}
+
+.content-table2 tbody tr:last-of-type{
+    border-bottom: 2px solid #925946;
+}
+
+.content-table2 tbody tr.active-row{
+    font-weight: bold;
+    color: #925946;
 }
 
 /* CUSTOM RESETS
@@ -189,8 +240,8 @@ p + p {
 }
 
 .btn-detect {
-    background-color: #eeae94;
-    color: #9c3933;  
+    background-color: #D76067;
+    color: #F3D7D4;  
 }
 
 .btn-upload {
@@ -208,10 +259,29 @@ p + p {
     color: #EBDBCE;  
 }
 
-
 .btn-save {
     background-color: #5F3A42;
     color: #E2B9B3;  
+}
+
+.btn-edit {
+    background-color: #ECB865;
+    color: #BF5B4B;  
+}
+
+.btn-new {
+    background-color: #7892B5;
+    color: #EDCA7F;  
+}
+
+.btn-back {
+    background-color: #8CB9C0;
+    color: #f8e1b0;  
+}
+
+.btn-delete {
+    background-color: #C1012D;
+    color: #F0D0C1;  
 }
 
 
@@ -989,6 +1059,14 @@ html, body {
 
 .pass-hero {
     background: url(../img/3333.jpg) no-repeat center / cover;     
+}
+
+.taskdash-hero {
+    background: url(../img/1234.jpg) no-repeat center / cover;     
+}
+
+.new-hero {
+    background: url(../img/5678.jpg) no-repeat center / cover;     
 }
 
 /* SITEMAIN

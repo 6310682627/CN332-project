@@ -1,14 +1,61 @@
 {% extends 'users/layout.html' %}
-
 {%block body%}
-<h1 class="loop-header">Loop Dashboard</h1>
-<a href="{% url 'mytasks:new_loop' task_id %}" class="btn btn-success btn-create btn-new-loop">+  New Loop</a>
-<a class="btn btn-dark" href="{% url 'mytasks:task' %}">Back to Task List</a>
-<br>
 
-<div class="video-section">
-    <div class="table-edit ml-3">
-        <table class="table table-bordered">
+<header id="masthead" class="site-header site-header-white">
+	<nav id="primary-navigation" class="site-navigation">
+		<div class="container">
+
+			<div class="navbar-header">
+			   
+				<a class="site-title"><span>Car</span>Tracking</a>
+
+			</div><!-- /.navbar-header -->
+
+			<div class="collapse navbar-collapse" id="agency-navbar-collapse">
+				<ul class="nav navbar-nav navbar-right">
+                  <li><a href="{% url 'users:index' %}">Home</a></li>
+              		<li ><a href="{% url 'mytasks:task' %}">Task List</a></li>
+              		<li ><a href="{% url 'mytasks:upload_video' %}">Upload VDO</a></li>
+              		<li><br /></li>
+              		<li><br /></li>
+              		<li class="dropdown">
+                		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile & Log Out<i class="fa fa-caret-down hidden-xs"
+                    		aria-hidden="true"></i></a>
+
+                		<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                  		<li><a href={% url 'users:profile' %}>Profile</a></li>
+                  		<li><a href={% url 'users:logout' %}>Log Out</a></li>
+                		</ul>
+              		</li>
+            		</ul>
+
+			</div>
+
+		</div>   
+	</nav><!-- /.site-navigation -->
+</header><!-- /#mastheaed -->
+
+<div id="hero" class="hero overlay subpage-hero taskdash-hero">
+	<div class="hero-content">
+		<div class="hero-text">
+			<h1>Loop Dashboard</h1>
+		</div><!-- /.hero-text -->
+	</div><!-- /.hero-content -->
+</div><!-- /.hero -->
+
+<main id="main" class="site-main">
+	<section class="site-section subpage-site-section">
+		<div class="container">
+			<div class="row mt-50">
+            <div class="col-md-8 col-md-offset-2">
+               <div class="text-center">
+                    <a class="btn btn-back" href="{% url 'mytasks:task' %}">Back to Task List</a>
+                  <a class="btn btn-new" href="{% url 'mytasks:new_loop' task_id %}" >+  New Loop</a>
+                  <br>
+               </div>
+            </div>
+         </div>
+         <table class="content-table2">
             <thead>
             <tr>
                 <th scope="col">Loop No.</th>
@@ -22,12 +69,14 @@
             <tr>
                 <td>{{ loop.pk }}</td>
                 <td>{{ loop.loop_name }}</td>
-                <td><a class="btn btn-warning" href="{% url 'mytasks:edit_loop' loop.pk %}" role="button">Edit</a>
-                <td><a class="btn btn-danger" href="{% url 'mytasks:delete_loop' loop.pk %}" role="button">Delete</a></td>
+                <td><a class="btn btn-edit" href="{% url 'mytasks:edit_loop' loop.pk %}" role="button">Edit</a>
+                <td><a class="btn btn-delete" href="{% url 'mytasks:delete_loop' loop.pk %}" role="button">Delete</a></td>
             </tr>
             {% endfor %}
             </tbody>
         </table>
-    </div>
-</div> 
+		</div>
+	</section>
+</main><!-- /#main -->
+
 {% endblock %}

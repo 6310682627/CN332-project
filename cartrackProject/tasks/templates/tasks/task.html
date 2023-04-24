@@ -48,9 +48,8 @@
 		<div class="container">
 			<div class="row mt-50">
             <div class="col-md-8 col-md-offset-2">
-               <h2 class="text-center heading-separator">Task list</h2>
                <div class="text-center">
-                  <a class="btn btn-upload" href="{% url 'mytasks:upload_video' %}">Upload</a>
+                  <a class="btn btn-dark" href="{% url 'mytasks:upload_video' %}">Upload</a>
                </div>
             </div>
          </div>
@@ -69,11 +68,11 @@
                {% for task in tasks %}
                   <tr>
                      <td>
-                              <p class="color-data">{{ task.date_time }}</p>
+                        <p class="color-data">{{ task.date_time }}</p>
                      </td>
       
                      <td>
-                              <p class="color-data">{{ task.user }}</p>
+                        <p class="color-data">{{ task.user }}</p>
                      </td>
 
                      <td>
@@ -89,7 +88,7 @@
                      </td>
 
                      <td>
-                        <a class="btn btn-warning" href="{% url 'mytasks:loop_dashboard' task.task_id %}" role="button">Edit Loop</a>
+                        <a class="btn btn-edit" href="{% url 'mytasks:loop_dashboard' task.task_id %}" role="button">Edit Loop</a>
                      </td>
 
                      <td>
