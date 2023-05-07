@@ -13,6 +13,7 @@ urlpatterns = [
     path('loop/new/<int:task_id>', views.new_loop, name='new_loop'),
     path('loop/edit/<int:loop_id>/', views.edit_loop, name='edit_loop'),
     path('loop/delete/<int:loop_id>/', views.delete_loop, name='delete_loop'),
-
+    path('counting_result_file/<int:task_id>/', views.counting_result_file, name="counting_result_file"),
+    
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

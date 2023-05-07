@@ -230,5 +230,14 @@ def detect(request, task_id):
     task_result = detect_celery.delay(vdofile, loopfile, task_id)
 
     return redirect(reverse("mytasks:task"))
-
-
+def counting_result_file(request,task_id):
+    task = Task.objects.get(task_id=task_id)
+    context = {
+        'result': list()
+    }
+    if not task.counting_result_file:
+        return HttpResponse("Have no result")
+    with open(f"{task.counting_result_file.path}", 'r') as result_file:
+        for line in result_file:
+            context['result'].append(line.split(','))
+    return render(request, 'tasks/counting_result_file.html', context)
