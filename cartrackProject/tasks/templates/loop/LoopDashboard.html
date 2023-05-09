@@ -16,7 +16,7 @@
                   <li><a href="{% url 'users:index' %}">Home</a></li>
               		<li ><a href="{% url 'mytasks:task' %}">Task List</a></li>
               		<li ><a href="{% url 'mytasks:upload_video' %}">Upload VDO</a></li>
-					<li><a href="{% url 'users:index' %}">Statistic</a></li>
+					  <li><a href="{% url 'mytasks:statistic' %}">Statistic</a></li>
               		<li><br /></li>
               		<li><br /></li>
               		<li class="dropdown">
@@ -68,8 +68,8 @@
             <tbody>
             {% for loop in loops %}
             <tr>
-                <td>{{ loop.pk }}</td>
-                <td>{{ loop.loop_name }}</td>
+                <td class = "color-dataloop">{{ loop.pk }}</td>
+                <td class = "color-dataloop">{{ loop.loop_name }}</td>
                 <td><a class="btn btn-edit" href="{% url 'mytasks:edit_loop' loop.pk %}" role="button">Edit</a>
                 <td><a class="btn btn-delete" href="{% url 'mytasks:delete_loop' loop.pk %}" role="button">Delete</a></td>
             </tr>

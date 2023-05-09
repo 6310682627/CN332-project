@@ -37,11 +37,51 @@
     color: #46a725;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
+    font-weight: 600;
+    font-size: medium;
 }
 
 .color-data{
+    color: #ca9494;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+font-weight: 400;
+font-size: medium;
+}
+
+.color-data1{
+    color: #c35f5f;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+font-weight: 400;
+font-size: medium;
+}
+
+.color-datasta{
+    color: #7f9aa5;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: medium;
+}
+
+.color-noresult {
+    color: #485778;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: medium;
+  }
+
+.color-datacount{
     color: #cc8080;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+font-weight: 400;
+}
+
+.color-dataloop{
+    color: #56373c;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
 font-weight: 400;
@@ -81,7 +121,6 @@ font-weight: 400;
 .content-table tbody tr{
     border-bottom: 1px solid #ffd0d0;
     font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
     
 }
 
@@ -147,6 +186,108 @@ font-weight: 400;
 .content-table2 tbody tr.active-row{
     font-weight: bold;
     color: #925946;
+}
+
+/* CUSTOM Table3
+================================================== */
+.content-table3{
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 1000px;
+    border-radius:10px 10px 0 0;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.content-table3 thead tr{
+    background-color: #75625e;
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.content-table3 th,
+.content-table3 td{
+    padding: 12px 15px;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    
+
+}
+
+.content-table3 tbody tr{
+    border-bottom: 1px solid #eadedc;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    
+}
+
+.content-table3 tbody tr:nth-of-type(even){
+    background-color: #eadedc;
+}
+
+.content-table3 tbody tr:last-of-type{
+    border-bottom: 2px solid #75625e;
+}
+
+.content-table3 tbody tr.active-row{
+    font-weight: bold;
+    color: #75625e;
+}
+
+/* CUSTOM Table3
+================================================== */
+.content-table4{
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 1000px;
+    border-radius:10px 10px 0 0;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.content-table4 thead tr{
+    background-color: #FFB5A7;
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.content-table4 th,
+.content-table4 td{
+    padding: 12px 15px;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    
+
+}
+
+.content-table4 tbody tr{
+    border-bottom: 1px solid #f8e1dd;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    
+}
+
+.content-table4 tbody tr:nth-of-type(even){
+    background-color: #f8e1dd;
+}
+
+.content-table4 tbody tr:last-of-type{
+    border-bottom: 2px solid #FFB5A7;
+}
+
+.content-table4 tbody tr.active-row{
+    font-weight: bold;
+    color: #FFB5A7;
 }
 
 /* CUSTOM RESETS
@@ -265,8 +406,8 @@ p + p {
 }
 
 .btn-edit {
-    background-color: #ECB865;
-    color: #BF5B4B;  
+    background-color: #fabebe;
+    color: #b74248;  
 }
 
 .btn-new {
@@ -294,6 +435,15 @@ p + p {
     color: #dfd0bb;  
 }
 
+.btn-sta {
+    background-color: #afcdd8;
+    color: #5c7998;  
+}
+
+.btn-bcount {
+    background-color: #ffc490;
+    color: #f6f4f3;  
+}
 
 .btn:hover,
 button.btn:hover,
@@ -1081,6 +1231,14 @@ html, body {
 
 .edit-hero {
     background: url(../img/9111.jpg) no-repeat center / cover;     
+}
+
+.sta-hero {
+    background: url(../img/1001.jpg) no-repeat center / cover;     
+}
+
+.result-hero {
+    background: url(../img/1000.jpg) no-repeat center / cover;     
 }
 
 /* SITEMAIN

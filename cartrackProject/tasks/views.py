@@ -230,6 +230,7 @@ def detect(request, task_id):
     task_result = detect_celery.delay(vdofile, loopfile, task_id)
 
     return redirect(reverse("mytasks:task"))
+
 def counting_result_file(request,task_id):
     task = Task.objects.get(task_id=task_id)
     context = {
@@ -241,3 +242,12 @@ def counting_result_file(request,task_id):
         for line in result_file:
             context['result'].append(line.split(','))
     return render(request, 'tasks/counting_result_file.html', context)
+
+def statistic(request):
+    if not request.user.is_authenticated:
+        return render(request, 'users/login.html')
+    
+    else:
+        tasks = Task.objects.all()
+        return render(request, 'tasks/statistic.html', { 'tasks' : tasks
+        })

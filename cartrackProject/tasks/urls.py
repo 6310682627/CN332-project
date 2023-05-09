@@ -6,8 +6,10 @@ from . import views
 
 app_name = 'mytasks'
 urlpatterns = [
+
     path('task/', views.task, name='task'),
     path('upload/', views.upload_video, name='upload_video'),
+    path('statistic/', views.statistic, name='statistic'),
     path('detect/<int:task_id>', views.detect, name='detect'),
     path('task/<int:task_id>/loop', views.loop_dashboard, name='loop_dashboard'),
     path('loop/new/<int:task_id>', views.new_loop, name='new_loop'),

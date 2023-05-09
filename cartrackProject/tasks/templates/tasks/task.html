@@ -16,7 +16,7 @@
                   <li><a href="{% url 'users:index' %}">Home</a></li>
               		<li class="active"><a href="{% url 'mytasks:task' %}">Task List</a></li>
               		<li ><a href="{% url 'mytasks:upload_video' %}">Upload VDO</a></li>
-                    <li><a href="{% url 'users:index' %}">Statistic</a></li>
+                  <li><a href="{% url 'mytasks:statistic' %}">Statistic</a></li>
               		<li><br /></li>
               		<li><br /></li>
               		<li class="dropdown">
@@ -46,19 +46,14 @@
 
 <main id="main" class="site-main">
 	<section class="site-section subpage-site-section">
-		<div class="container">
-			<div class="row mt-50">
-            <div class="col-md-8 col-md-offset-2">
-               <div class="text-center">
-                  <a class="btn btn-dark" href="{% url 'mytasks:upload_video' %}">Upload</a>
-               </div>
-            </div>
-         </div>
+		
+
          <table class="content-table"><center>
             <thead>
                <tr>
                   <th>Date</th>
                   <th>Owner</th>
+                  <th>Name</th>
                   <th>Original Video</th>
                   <th>Tracking Video</th>
                   <th>Loop</th>
@@ -73,7 +68,11 @@
                      </td>
       
                      <td>
-                        <p class="color-data">{{ task.user }}</p>
+                        <p class="color-data1">{{ task.user }}</p>
+                     </td>
+
+                     <td>
+                        <p class="color-data">{{ task.task_name }}</p>
                      </td>
 
                      <td>
@@ -106,11 +105,11 @@
                            <p class="color-finish">Finish!</p>
                         {% endif %}
                     </td>
-                  </tr>
+  
                {% endfor %}
             </tbody>
          </table>
-		</div>
+		
 	</section>
 </main><!-- /#main -->
    
